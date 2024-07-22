@@ -1,0 +1,12 @@
+{
+  "exam": {
+    "name": "Tên bài thi",
+    "deadline": "Hạn nộp",
+    "question": "Câu hỏi",
+    "maxGrade": "Điểm tối đa",
+    "status": "Trạng thái",
+    "description": "Mô tả",
+    "doExam": "Làm bài thi",
+    "total": "Tổng"
+  }
+}

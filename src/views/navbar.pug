@@ -1,0 +1,155 @@
+nav.bg-white.border-gray-200.mb-4(class='dark:bg-gray-900')
+  .max-w-screen-xl.flex.flex-wrap.items-center.justify-between.mx-auto.p-4
+    a.flex.items-center.space-x-3(href='/' class='rtl:space-x-reverse')
+      img.h-8(src='/favicon.ico' alt='SmartEdu Logo')
+      span.self-center.text-2xl.font-semibold.whitespace-nowrap(class='dark:text-white') SmartEdu
+
+    .flex.items-center.space-x-4
+      form.relative
+        input(
+          type='text'
+          placeholder='Search...'
+          class='w-full p-2 pr-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+        )
+        button(
+          type='submit'
+          class='absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-900 dark:hover:text-white'
+        )
+          svg.w-4.h-4(aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20')
+            path(stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z')
+          span.sr-only Search
+
+    .flex.items-center.gap-3.space-x-3(class='md:order-3 md:space-x-0 rtl:space-x-reverse')
+      // Language Dropdown
+      .relative.inline-block.text-left
+        button.inline-flex.items-center.text-gray-500.bg-white.rounded-lg.px-4.py-2.space-x-2(
+          class="hover:bg-gray-100 focus:outline-none focus:shadow-outline"
+          type='button'
+          id='languageDropdown'
+          aria-expanded='false'
+          aria-haspopup='true'
+          onclick='toggleDropdown()'
+        )
+          img#selectedLanguageFlag.w-5.h-5(src='/icons/gb.png' alt='English')
+          span#selectedLanguageText English
+          svg.w-4.h-4.fill-current.ml-2(aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+            path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7')
+
+        // Dropdown menu
+        ul.hidden.absolute.right-0.mt-2.w-48.bg-white.border.border-gray-200.rounded-lg.shadow-lg.z-10(
+          id='languageMenu'
+          aria-labelledby='languageDropdown'
+        )
+          li
+            a.flex.items-center.px-4.py-2.text-gray-900.rounded-lg.space-x-2(
+              href='?lng=en',
+              onclick='selectLanguage("en", "/icons/gb.png", "English")'
+            )
+              img.w-5.h-5(src='/icons/gb.png', alt='English')
+              span English
+          li
+            a.flex.items-center.px-4.py-2.text-gray-900.rounded-lg.space-x-2(
+              href='?lng=vi',
+              onclick='selectLanguage("vi", "/icons/vn.svg", "Vietnamese")'
+            )
+              img.w-5.h-5(src='/icons/vn.svg', alt='Vietnamese')
+              span Vietnamese
+
+      if user
+        p #{ user.name }
+        a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-4.py-2.text-center(
+          href='/auth/logout',
+          class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+        ) Log out
+      else
+        a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-4.py-2.text-center(
+          href='/auth/login',
+          class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+        ) Sign in
+
+    button.inline-flex.items-center.p-2.w-10.h-10.justify-center.text-sm.text-gray-500.rounded-lg(
+      data-collapse-toggle='navbar-cta',
+      type='button',
+      class='md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600',
+      aria-controls='navbar-cta',
+      aria-expanded='false',
+      onclick='toggleMenu()'
+    )
+      span.sr-only Open main menu
+      svg.w-5.h-5(
+        aria-hidden='true',
+        xmlns='http://www.w3.org/2000/svg',
+        fill='none',
+        viewbox='0 0 17 14'
+      )
+        path(
+          stroke='currentColor',
+          stroke-linecap='round',
+          stroke-linejoin='round',
+          stroke-width='2',
+          d='M1 1h15M1 7h15M1 13h15'
+        )
+    #navbar-cta.items-center.justify-between.hidden.w-full(
+      class='md:flex md:w-auto md:order-1'
+    )
+      ul.flex.flex-col.font-medium.p-4.mt-4.border.border-gray-100.rounded-lg.bg-gray-50(
+        class='md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'
+      )
+        li
+          a.block.py-2.px-3.text-white.bg-blue-700.rounded(
+            href='/',
+            class='md:p-0 md:bg-transparent md:text-blue-700 md:dark:text-blue-500',
+            aria-current='page'
+          ) Home
+        li
+          a.block.py-2.px-3.text-gray-900.rounded(
+            href='/courses',
+            class='md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
+          ) Courses
+        li
+          a.block.py-2.px-3.text-gray-900.rounded(
+            href='/users',
+            class='md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
+          ) Instructors
+        li
+          a.block.py-2.px-3.text-gray-900.rounded(
+            href='/users',
+            class='md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
+          ) Students
+
+// JavaScript for toggling the menu
+script.
+  function toggleMenu() {
+    const menu = document.getElementById('navbar-cta');
+    const isExpanded = menu.classList.toggle('hidden');
+    // Update aria-expanded attribute
+    const button = document.querySelector('button[data-collapse-toggle="navbar-cta"]');
+    button.setAttribute('aria-expanded', !isExpanded);
+  }
+
+  function toggleDropdown() {
+    const dropdown = document.getElementById('languageMenu');
+    dropdown.classList.toggle('hidden');
+    const button = document.getElementById('languageDropdown');
+    const isExpanded = dropdown.classList.contains('hidden');
+    button.setAttribute('aria-expanded', !isExpanded);
+  }
+
+  function selectLanguage(lang, flagSrc, langText) {
+    const flagImg = document.getElementById('selectedLanguageFlag');
+    const langSpan = document.getElementById('selectedLanguageText');
+    flagImg.src = flagSrc;
+    flagImg.alt = langText;
+    langSpan.textContent = langText;
+    toggleDropdown();
+  }
+
+  // Close the language menu when clicking outside
+  window.addEventListener('click', function(e) {
+    const menu = document.getElementById('languageMenu');
+    const button = document.getElementById('languageDropdown');
+    if (!menu.contains(e.target) && !button.contains(e.target)) {
+      menu.classList.add('hidden');
+      button.setAttribute('aria-expanded', 'false');
+    }
+  });

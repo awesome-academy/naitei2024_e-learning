@@ -1,0 +1,11 @@
+{
+  "lesson": {
+    "finalExam": "Final exam",
+    "detail": {
+      "content": "Content",
+      "reference": "Reference",
+      "done": "Done",
+      "markAsDone": "Mark As Done"
+    }
+  }
+}

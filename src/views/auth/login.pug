@@ -1,0 +1,61 @@
+doctype html
+html
+  head
+    title= t('register_title')
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/stylesheets/login.css')
+    link(
+      rel='stylesheet',
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'
+    )
+
+  body
+    .background
+      .login-container
+        img.logo(src='/favicon.ico', alt='Logo')
+        h2= t('welcome_message')
+        form(action='/auth/login', method='post')
+          .form-group
+            label(for='username')= t('username')
+            input#username(type='text', name='username', required)
+            // Hiển thị thông báo lỗi cho trường username
+            if errors && errors.find(err => err.param === 'username')
+              .error-message= errors.find(err => err.param === 'username').msg
+          .form-group
+            label(for='password')= t('password')
+            .password-wrapper
+              input#password(type='password', name='password', required)
+              // Hiển thị thông báo lỗi cho trường password
+              if errors && errors.find(err => err.param === 'password')
+                .error-message= errors.find(err => err.param === 'password').msg
+          .form-group.checkbox-group
+            input#show-password(type='checkbox')
+            label(for='show-password')= t('show_password')
+          .form-group
+            a(href='#')= t('forgot_password')
+            button(type='submit')= t('sign_in')
+          .or-divider= t('or')
+          .form-group
+            button.google-login(type='button')
+              i.fab.fa-google
+              | #{ t('login_with_google') }
+          .form-group
+            a.signup(href='/auth/register')= t('new_user_sign_up')
+
+          // Language Selector
+          .language-selector
+            a(href='?lng=en')
+              img.flag(src='/images/eng-flag.png', alt='English Flag')
+              | #{ t('english') }
+            |
+            a(href='?lng=vi')
+              img.flag(src='/images/vietnam-flag.png', alt='Vietnamese Flag')
+              | #{ t('vietnamese') }
+
+    script.
+      document.getElementById('show-password').addEventListener('change', function () {
+        var passwordField = document.getElementById('password');
+        var type = this.checked ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+      });

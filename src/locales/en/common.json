@@ -1,0 +1,10 @@
+{
+  "common": {
+    "detail": "Detail",
+    "edit": "Edit",
+    "delete": "Delete",
+    "submit": "Submit",
+    "confirmMessage": "Are you sure?",
+    "back": "Back"
+  }
+}

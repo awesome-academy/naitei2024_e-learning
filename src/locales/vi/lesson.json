@@ -1,0 +1,11 @@
+{
+  "lesson": {
+    "finalExam": "Bài kiểm tra cuối kỳ",
+    "detail": {
+      "content": "Nội dung",
+      "reference": "Tài liệu tham khảo",
+      "done": "Đã hoàn thành",
+      "markAsDone": "Đánh dấu đã hoàn thành"
+    }
+  }
+}

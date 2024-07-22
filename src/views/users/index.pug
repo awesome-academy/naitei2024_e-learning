@@ -1,0 +1,105 @@
+extends layout
+
+block content
+  body
+    .container.mx-auto.px-4.py-4.flex.items-center
+      div(class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-16")
+        div(class="md:w-1/2 mb-4 md:mb-0")
+          h1(class="text-4xl font-bold mb-2") Welcome to the
+          p(class="text-4xl font-bold text-indigo-600 mb-4") Smart Education
+          p(class="text-gray-600 mb-6 text-justify") Learn from the best teachers around the world. We provide the best education for you. Join us now and explore the world of education.
+          .flex.space-x-4
+            button(class="hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white px-4 py-2 rounded-md bg-indigo-700 transition") Get Started
+
+        div(class="md:w-1/2 relative")
+          img.w-full.h-auto(src="/images/banner.png" alt="Learning illustration")
+
+    .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
+      div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6")
+        .bg-teal-100.p-4.rounded-lg.flex.flex-col.items-center
+          span.text-3xl.font-bold.text-teal-700 24
+          span.text-sm.text-teal-600 Enrolled Courses
+          a.text-teal-500.text-sm.mt-2(href="#") View details →
+        .bg-purple-100.p-4.rounded-lg.flex.flex-col.items-center
+          span.text-3xl.font-bold.text-purple-700 56
+          span.text-sm.text-purple-600 Lessons
+          a.text-purple-500.text-sm.mt-2(href="#") View details →
+        .bg-orange-100.p-4.rounded-lg.flex.flex-col.items-center
+          span.text-3xl.font-bold.text-orange-700 17
+          span.text-sm.text-orange-600 Assignments
+          a.text-orange-500.text-sm.mt-2(href="#") View details →
+        .flex.flex-col.items-center
+          .text-lg.font-semibold.mb-2 Progress
+          .w-16.h-16.rounded-full.border-2.border-orange-500.flex.items-center.justify-center
+            img.w-14.h-14.rounded-full.object-cover(src="/images/avatar.png" alt="User")
+          .mt-2.text-center
+            .font-semibold Alesia Karapova
+            .text-sm.text-gray-500 Student
+    .mb-6
+    .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
+      .flex.justify-between.items-center.mb-6
+        h2.text-xl.font-bold Continue Learning
+        a.text-teal-500(href="#") See All
+      .space-y-4
+        each course in courseLearns
+          .flex.items-center.justify-between.bg-gray-50.p-4.rounded-lg
+            .flex.items-center.space-x-4
+              .w-10.h-10.bg-teal-500.rounded-lg
+              .flex.flex-col
+                .font-semibold= course.name
+                .text-sm.text-gray-500= `${course.level} • ${course.duration}`
+            .flex.items-center.space-x-4
+              .w-32.bg-gray-200.rounded-full.h-2
+                .bg-teal-500.rounded-full.h-2(style=`width: ${course.progress}`)
+              span.text-sm.text-gray-500= course.progress
+              span.text-sm(class= course.status === 'Completed' ? 'text-green-500' : 'text-orange-500')= course.status
+              svg.w-6.h-6.text-gray-400(fill="none" stroke="currentColor" viewBox="0 0 24 24")
+                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7")
+
+    .mb-6
+    .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
+      .flex.justify-between.items-center.mb-6
+        h2.text-xl.font-bold Recommended for you
+        a.text-teal-500(href="#") See All
+      div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6")
+        each course in courseRecommends
+          .bg-gray-50.rounded-lg.overflow-hidden
+            .flex.justify-center.items-center.h-48
+              img(src='/images/python.png' alt='Image' class='h-full')
+            .p-4
+              h3.font-semibold.mb-2= course.name
+              p.text-sm.text-gray-600.mb-4= course.description
+              .flex.justify-between.items-center.text-sm.text-gray-500
+                span= `${course.level} • ${course.duration}`
+
+    .mb-6
+    .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
+      .flex.justify-between.items-center.mb-6
+        h2.text-xl.font-bold Instructor
+        a.text-teal-500(href="#") See All
+      div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6")
+        each course in courseRecommends
+          .bg-gray-50.rounded-lg.overflow-hidden
+            .flex.justify-center.items-center.h-48
+              img(src='/images/instructor.png' alt='Image' class='h-full')
+            .p-4
+              h3.font-semibold.mb-2= course.name
+              p.text-sm.text-gray-600.mb-4= course.description
+              .flex.justify-between.items-center.text-sm.text-gray-500
+                span= `${course.level} • ${course.duration}`
+
+    .mb-6
+    .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
+      .flex.justify-between.items-center.mb-6
+        h2.text-xl.font-bold Student
+        a.text-teal-500(href="#") See All
+      div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6")
+        each course in courseRecommends
+          .bg-gray-50.rounded-lg.overflow-hidden
+            .flex.justify-center.items-center.h-48
+              img(src='/images/student.png' alt='Image' class='h-full')
+            .p-4
+              h3.font-semibold.mb-2= course.name
+              p.text-sm.text-gray-600.mb-4= course.description
+              .flex.justify-between.items-center.text-sm.text-gray-500
+                span= `${course.level} • ${course.duration}`
