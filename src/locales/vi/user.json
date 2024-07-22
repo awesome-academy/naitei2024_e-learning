@@ -1,0 +1,21 @@
+{
+  "user": {
+    "user": "Người dùng",
+    "userManager": "Quản lý người dùng",
+    "detail": {
+      "name": "Họ và tên",
+      "username": "Tên đăng nhập",
+      "email": "Email",
+      "role": "Vai trò",
+      "birthday": "Ngày sinh",
+      "avatar": "Ảnh đại diện",
+      "about": "Giới thiệu",
+      "phone": "Số điện thoại",
+      "courses": "Các khóa học",
+      "see_all": "Xem tất cả"
+    },
+    "action": {
+      "add": "Thêm người dùng"
+    }
+  }
+}

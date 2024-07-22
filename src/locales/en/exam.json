@@ -1,0 +1,12 @@
+{
+  "exam": {
+    "name": "Exam name",
+    "deadline": "Deadline",
+    "question": "Question",
+    "maxGrade": "Max grade",
+    "status": "Status",
+    "description": "Description",
+    "doExam": "Do Exam",
+    "total": "Total"
+  }
+}

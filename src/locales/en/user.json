@@ -1,0 +1,21 @@
+{
+  "user": {
+    "user": "User",
+    "userManager": "User Manager",
+    "detail": {
+      "name": "Name",
+      "username": "Username",
+      "email": "Email",
+      "role": "Role",
+      "birthday": "Birthday",
+      "avatar": "Avatar",
+      "about": "About",
+      "phone": "Phone",
+      "courses": "Their courses",
+      "see_all": "See all"
+    },
+    "action": {
+      "add": "Add user"
+    }
+  }
+}

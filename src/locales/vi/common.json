@@ -1,0 +1,10 @@
+{
+  "common": {
+    "detail": "Chi tiết",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "submit": "Gửi",
+    "confirmMessage": "Bạn có chắc không?",
+    "back": "Quay lại"
+  }
+}

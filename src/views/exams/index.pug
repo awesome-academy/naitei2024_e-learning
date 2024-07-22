@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  a(href='/courses/1') #{ t('common.back') }
+  .d-flex.justify-content-center
+    h1 #{ t('exam.name') }
+  .d-flex.justify-content-between
+    strong #{ t('exam.deadline') }: 26/12/2023
+    strong #{ t('exam.question') }: 12
+    strong #{ t('exam.maxGrade') }: 20
+    strong #{ t('exam.status') }: Pass
+  br
+  div
+    h3 #{ t('exam.description') }
+    p Exam description
+  .d-flex.justify-content-center
+    a.btn.btn-outline-primary(href='/courses/1/exam/1') #{ t('exam.doExam') }

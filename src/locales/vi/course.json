@@ -1,0 +1,11 @@
+{
+  "course": {
+    "courseInfo": "Thông tin khóa học",
+    "detail": {
+      "about": "Về khóa học này",
+      "taughtBy": "Dạy bởi",
+      "instructor": "Giảng viên",
+      "subInstructor": "Trợ giảng"
+    }
+  }
+}
