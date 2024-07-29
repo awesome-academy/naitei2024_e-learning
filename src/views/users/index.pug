@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    h1.text-center #{t('user.userManager')}
+    div.d-flex.justify-content-end
+        a.btn.btn-outline-primary(href="/users/create") #{t('user.action.add')}
+    table.table
+        thead
+            tr
+                th(scope="col") #
+                th(scope="col") #{t('user.detail.name')}
+                th(scope="col") #{t('user.detail.username')}
+                th(scope="col") #{t('user.detail.email')}
+                th(scope="col") #{t('user.detail.role')}
+                th(scope="col") #{t('user.detail.birthday')}
+                th(scope="col") 
+        tbody
+            each user, index in users ? users : ['There are no user!']
+                tr  
+
+                    th(scope="row") #{index+1}
+                    td #{user.name}
+                    td #{user.username}
+                    td #{user.email}
+                    td #{user.role}
+                    td #{user.birthday}
+                    td.d-flex.justify-content-between
+                        a.btn.btn-outline-info(href=`/users/${user.id}`) #{t('common.detail')}
+                        a.btn.btn-outline-warning(href=`/users/${user.id}/update`) #{t('common.edit')}
+                        a.btn.btn-outline-danger(href=`/users/${user.id}/delete`) #{t('common.delete')}

@@ -1,0 +1,17 @@
+{
+    "user": {
+        "user": "User",
+        "userManager": "User Manager",
+        "detail": {
+            "name": "Name",
+            "username": "Username",
+            "email": "Email",
+            "role": "Role",
+            "birthday": "Birthday",
+            "avatar": "Avatar"
+        },
+        "action": {
+            "add": "Add user"
+        }
+    }
+}

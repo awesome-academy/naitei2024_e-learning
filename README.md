@@ -12,6 +12,10 @@ Run the server in development mode.
 
 Run the server in development with debug mode.
 
+### `npm run tailwind:css`
+
+Watch changes when coding UI with tailwind.
+
 ### `npm run lint`
 
 Check for linting errors.

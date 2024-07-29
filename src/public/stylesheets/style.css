@@ -1,8 +1,15 @@
 body {
-  padding: 50px;
+  padding: 20px 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+.nav-link-tabs {
+  border: 0px !important;
+  color: #27374D !important;
+}
+.nav-link-tabs.active {
+  color: #9DB2BF !important;
 }

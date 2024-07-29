@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    title= t('register_title')
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/stylesheets/register.css')
+
+  body
+    .language-switcher
+      form#language-form(action='', method='get')
+        select(name='lng', id='lng-select', onchange='this.form.submit()')
+          option(value='en', selected=(lng === 'en')) English
+          option(value='vi', selected=(lng === 'vi')) Tiếng Việt
+
+    .background
+      .register-container
+        h2= t('create_account')
+        form(action='/auth/register', method='post')
+          .form-group
+            label(for='full-name')= t('full_name')
+            input(type='text', id='name', name='name', required)
+          .form-group
+            label(for='username')= t('username')
+            input(type='text', id='username', name='username', required)
+          .form-group
+            label(for='email')= t('email')
+            input(type='email', id='email', name='email', required)
+          .form-group
+            label(for='password')= t('password')
+            input(type='password', id='password', name='password', required)
+          .form-group
+            label(for='confirm-password')= t('confirm_password')
+            input(type='password', id='confirm-password', name='confirm-password', required)
+          button(type='submit', class='signup-button')= t('register_button')
+        a(href='/auth/login')= t('already_have_account')

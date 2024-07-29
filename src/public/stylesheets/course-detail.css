@@ -1,0 +1,126 @@
+body {
+    background-color: rgb(157, 178, 191);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.course-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.course-info {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.instructor img {
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.instructor p {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    margin: 0;
+}
+
+.course-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.course-stats span {
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.course-image {
+    max-width: 40%;
+    text-align: center;
+}
+
+.course-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.progress-bar {
+    background-color: #ccc;
+    height: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #4caf50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+button {
+    background-color: rgb(39, 55, 77);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px 0px 20px 0px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.course-content {
+    background-color: rgb(221, 230, 237);
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+    border: 2px solid rgb(39, 55, 77);
+    margin-top: 50px;
+}
+
+.course-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: rgb(39, 55, 77);
+}
+
+.chapter {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid rgb(39, 55, 77);
+    border-radius: 8px;
+}
+
+.lesson {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid rgb(39, 55, 77);
+    border-radius: 5px;
+    background-color: rgb(221, 230, 237);
+}

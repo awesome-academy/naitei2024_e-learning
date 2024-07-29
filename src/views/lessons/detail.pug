@@ -1,0 +1,15 @@
+mixin detail(lessonDetail)
+    if lessonDetail
+        h1= lessonDetail.title
+        div  
+            h3 #{t('lesson.detail.content')} 
+            p= lessonDetail.content
+        div 
+            h3 #{t('lesson.detail.reference')} 
+            a(href=`${lessonDetail.file_url}`)=lessonDetail.file_url
+        br
+        div.d-flex.justify-content-center
+            if lessonDetail.done 
+                button.btn.btn-outline-primary(disabled) #{t('lesson.detail.done')}
+            else
+                button.btn.btn-outline-primary #{t('lesson.detail.markAsDone')}
