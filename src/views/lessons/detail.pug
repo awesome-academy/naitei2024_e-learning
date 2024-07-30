@@ -1,0 +1,14 @@
+mixin detail(lessonDetail)
+    h1= lessonDetail.title
+    div  
+        h3 Content 
+        p= lessonDetail.content
+    div 
+        h3 Reference 
+        a(href=`${lessonDetail.file_url}`)=lessonDetail.file_url
+    br
+    div.d-flex.justify-content-center
+        if lessonDetail.done 
+            button.btn.btn-outline-primary(disabled) Done
+        else
+            button.btn.btn-outline-primary Mark as done

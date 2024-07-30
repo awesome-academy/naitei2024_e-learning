@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    h1.text-center User Manager
+    div.d-flex.justify-content-end
+        a.btn.btn-outline-primary(href="/users/create") Add user
+    table.table
+        thead
+            tr
+                th(scope="col") #
+                th(scope="col") Name
+                th(scope="col") Username
+                th(scope="col") Email
+                th(scope="col") Role
+                th(scope="col") Birthday
+                th(scope="col") 
+        tbody
+            each user, index in users ? users : ['There are no user!']
+                tr  
+
+                    th(scope="row") #{index+1}
+                    td #{user.name}
+                    td #{user.username}
+                    td #{user.email}
+                    td #{user.role}
+                    td #{user.birthday}
+                    td.d-flex.justify-content-between
+                        a.btn.btn-outline-info(href=`/users/${user.id}`) Detail
+                        a.btn.btn-outline-warning(href=`/users/${user.id}/update`) Edit
+                        a.btn.btn-outline-danger(href=`/users/${user.id}/delete`) Delete

@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+    a(href="/courses/1") Back to Course
+    div.d-flex.justify-content-center
+        h1 Exam name
+    div.d-flex.justify-content-between
+        strong Deadline: 26/12/2023
+        strong Questions: 12
+        strong Max grade: 20
+        strong Status: Pass
+    br
+    div
+        h3 Description
+        p Exam description 
+    div.d-flex.justify-content-center
+        a.btn.btn-outline-primary(href="/courses/1/exam/1") Do exam

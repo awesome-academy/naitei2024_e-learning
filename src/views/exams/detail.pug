@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    a(href="/courses/1") Back to Course
+    br
+    br
+    div.card
+        div.card-header.d-flex.justify-content-between
+            div Exam Name
+            div Total: 12
+        form
+            div.card-body
+                h5.card-title Question: Special title treatment
+                p.card-text
+                    div 
+                        div.form-check.form-check-inline
+                            input.form-check-input(type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1")
+                            label.form-check-label(for="inlineRadio1") 1
+                        div.form-check.form-check-inline
+                            input.form-check-input(type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2")
+                            label.form-check-label(for="inlineRadio2") 2
+                    div 
+                        div.form-check.form-check-inline
+                            input.form-check-input(type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3")
+                            label.form-check-label(for="inlineRadio3") 3
+                        div.form-check.form-check-inline
+                            input.form-check-input(type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4")
+                            label.form-check-label(for="inlineRadio4") 4
+            div.card-footer.text-center
+                button.btn.btn-success Submit
