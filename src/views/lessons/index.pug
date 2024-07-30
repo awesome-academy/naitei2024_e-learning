@@ -4,7 +4,7 @@ include detail.pug
 block content
     div.d-flex.align-items-start
         div.nav.flex-column.nav-tabs.me-3#v-pills-tab(role="tablist" aria-orientation="vertical" style="border-bottom: 0px !important;border-right: 1px solid #27374D !important;min-width: 150px;")
-            each lesson, index in fullLessons ? fullLessons : ['There are no lesson!']
+            each lesson, index in lessonList ? lessonList : ['There are no lesson!']
                 a.nav-link.nav-link-tabs.d-flex.justify-content-between.align-items-center(class=(lesson.id === lessonDetail.id ? 'active' : '') href=`/courses/${courseID}/lessons/${lesson.id}`)
                     | #{lesson.title}
                     if lesson.done

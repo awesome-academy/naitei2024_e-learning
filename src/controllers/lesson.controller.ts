@@ -1,6 +1,7 @@
 import { NextFunction, Response, Request } from 'express';
 import asyncHandler from 'express-async-handler';
 import { fullLessons } from '../mock/data';
+import { getLessonById, getLessonList } from '../services/lesson.service';
 
 export interface RequestWithCourseID extends Request {
   courseID?: string;
@@ -8,11 +9,10 @@ export interface RequestWithCourseID extends Request {
 
 export const getLessonDetai = asyncHandler(
   async (req: RequestWithCourseID, res: Response, next: NextFunction) => {
-    const lessonDetail = fullLessons.find(
-      lesson => lesson.id === req.params.lessonID
-    );
+    const lessonList = await getLessonList('66', req.courseID!);
+    const lessonDetail = await getLessonById(req.params.lessonID);
     res.render('lessons/index', {
-      fullLessons,
+      lessonList,
       lessonDetail,
       courseID: req.courseID,
     });
