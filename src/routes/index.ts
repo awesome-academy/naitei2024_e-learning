@@ -1,6 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
 import authRoutes from './auth.route';
-
 import lessonRouter from './lesson.route';
 import examRoute from './exam.route';
 import userRoute from './user.route';
@@ -11,9 +10,8 @@ router.get('/', function (req: Request, res: Response, next: NextFunction) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/course-detail', (req: Request, res: Response, next: NextFunction) => {
 
-  // Render view course-detail.pug với dữ liệu khóa học
+router.get('/course-detail', (req: Request, res: Response, next: NextFunction) => {
   res.render('courses/course-detail');
 });
 
