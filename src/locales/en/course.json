@@ -1,0 +1,11 @@
+{
+  "course": {
+    "courseInfo": "Course Info",
+    "detail": {
+      "about": "About this Course",
+      "taughtBy": "Taught by",
+      "instructor": "Instructor",
+      "subInstructor": "Sub Instructor"
+    }
+  }
+}

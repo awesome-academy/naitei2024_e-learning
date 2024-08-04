@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import asyncHandler from 'express-async-handler';
-import { courseRecommends, courseLearns, user } from '../mock/data';
+import { courseRecommends, courseLearns } from '../mock/data';
 
 export const index = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -8,7 +8,7 @@ export const index = asyncHandler(
       title: 'Smart Education',
       courseRecommends,
       courseLearns,
-      user,
+      user: res.locals.user || null,
     });
   }
 );

@@ -1,3 +1,14 @@
 body {
   padding: 20px 50px;
 }
+
+.custom-cursor{
+  cursor: pointer;
+}
+
+#userMenu {
+  left: 70%;
+  margin-top: 0.5rem; 
+  transform: translateX(0.5rem); 
+  width: 12rem; 
+}

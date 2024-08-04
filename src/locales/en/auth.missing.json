@@ -1,0 +1,7 @@
+{
+  "login": {
+    "errors": {
+      "invalid_credentials": "login.errors.invalid_credentials"
+    }
+  }
+}

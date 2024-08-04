@@ -1,15 +1,16 @@
 import { NextFunction, Response, Request } from 'express';
 import asyncHandler from 'express-async-handler';
-import { fullLessons } from '../mock/data';
+import { getLessonList } from '../services/lesson.service';
 import { RequestWithCourseID } from '../helpers/lesson.helper';
+import { getCourseById } from '../services/course.service';
 
 export const getLessonDetail = asyncHandler(
   async (req: RequestWithCourseID, res: Response, next: NextFunction) => {
-    const lessonDetail = fullLessons.find(
-      lesson => lesson.id === req.params.lessonID
-    );
+    // [TODO] get current user id
+    const lessonList = await getLessonList('10', req.courseID!);
+    const lessonDetail = lessonList.find(lesson => lesson.id === req.params.id);
     res.render('lessons/index', {
-      fullLessons,
+      lessonList,
       lessonDetail,
       courseID: req.courseID,
     });
@@ -17,8 +18,15 @@ export const getLessonDetail = asyncHandler(
 );
 
 export const lessonList = asyncHandler(
-  async (req: Request, res: Response, next: NextFunction) => {
-    res.send('lesson list');
+  async (req: RequestWithCourseID, res: Response, next: NextFunction) => {
+    // [TODO] get current user id
+    const lessonList = await getLessonList('10', req.courseID!);
+    const courseDetail = await getCourseById(req.courseID!);
+    res.render('lessons/index', {
+      lessonList,
+      courseDetail,
+      courseID: req.courseID,
+    });
   }
 );
 

@@ -5,6 +5,7 @@ import { StudentLesson } from './student_lesson.entity';
 import { Answer } from './answer.entity';
 import { Grade } from './grade.entity';
 import { UserRole } from '../enums/UserRole';
+import * as bcrypt from 'bcrypt';
 
 @Entity('users')
 export class User {
@@ -62,5 +63,16 @@ export class User {
 
   constructor(partial?: Partial<User>) {
     Object.assign(this, partial);
+  }
+
+  // Hash mật khẩu trước khi lưu
+  static async hashPassword(password: string): Promise<string> {
+    const salt = await bcrypt.genSalt(10);
+    return bcrypt.hash(password, salt);
+  }
+
+  // So sánh mật khẩu
+  async comparePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.hash_password);
   }
 }

@@ -55,7 +55,22 @@ nav.bg-white.border-gray-200.mb-4(class='dark:bg-gray-900')
               img.w-5.h-5(src='/icons/vn.svg' alt='Vietnamese')
               span Vietnamese
 
-      a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-4.py-2.text-center(href='/auth/login' class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800') Sign in
+      if user
+        .relative.inline-block.text-left
+          .flex.items-center.custom-cursor
+            p.text-dark.font-medium.ml-2 #{user.name}
+            img.h-10.w-10.ml-2.rounded-full(src=user.avatar_url || '/images/user.png', alt='User Avatar', id='userAvatar', onclick='toggleUserMenu()')
+          #userMenu.hidden.absolute.mt-2.w-48.bg-white.border.border-gray-200.rounded-lg.shadow-lg.transform.translate-x-1
+            ul.py-1.text-gray-700
+              li
+                a.block.px-4.py-2.text-sm.hover-bg-gray-100(href='/users/profile') Trang cá nhân
+              li
+                a.block.px-4.py-2.text-sm.hover-bg-gray-100(href='/courses') Khóa học của tôi
+              li
+                a.block.px-4.py-2.text-sm.hover-bg-gray-100(href='/auth/logout') Đăng xuất
+      else
+        a.text-white.bg-blue-700.font-medium.rounded-lg.text-sm.px-4.py-2.text-center(href='/auth/login' class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800') Sign in
+
       button.inline-flex.items-center.p-2.w-10.h-10.justify-center.text-sm.text-gray-500.rounded-lg(
         data-collapse-toggle='navbar-cta'
         type='button'
@@ -105,12 +120,29 @@ script.
     toggleDropdown();
   }
 
-  // Close the language menu when clicking outside
+  function toggleUserMenu() {
+    const userMenu = document.getElementById('userMenu');
+    userMenu.classList.toggle('hidden');
+    const button = document.getElementById('userAvatar');
+    const isExpanded = !userMenu.classList.contains('hidden');
+    button.setAttribute('aria-expanded', isExpanded);
+  }
+
+  // Close the language menu and user menu when clicking outside
   window.addEventListener('click', function(e) {
-    const menu = document.getElementById('languageMenu');
-    const button = document.getElementById('languageDropdown');
-    if (!menu.contains(e.target) && !button.contains(e.target)) {
-      menu.classList.add('hidden');
-      button.setAttribute('aria-expanded', 'false');
+    const languageMenu = document.getElementById('languageMenu');
+    const languageButton = document.getElementById('languageDropdown');
+    const userMenu = document.getElementById('userMenu');
+    const userButton = document.getElementById('userAvatar');
+    
+    if (!languageMenu.contains(e.target) && !languageButton.contains(e.target)) {
+      languageMenu.classList.add('hidden');
+      languageButton.setAttribute('aria-expanded', 'false');
+    }
+
+    if (!userMenu.contains(e.target) && !userButton.contains(e.target)) {
+      userMenu.classList.add('hidden');
+      userButton.setAttribute('aria-expanded', 'false');
     }
   });
+

@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    title= t('register_title')
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/stylesheets/register.css')
+
+  body
+    .language-switcher
+      form#language-form(action='', method='get')
+        select#lng-select(name='lng', onchange='this.form.submit()')
+          option(value='en', selected=lng === 'en') English
+          option(value='vi', selected=lng === 'vi') Tiếng Việt
+
+    .background
+      .register-container
+        h2= t('create_account')
+        form(action='/auth/register', method='post')
+          .form-group
+            label(for='name')= t('full_name')
+            input#name(type='text', name='name', value=name || '', required)
+            if errors && errors.find(err => err.param === 'name')
+              .error-message= errors.find(err => err.param === 'name').msg
+
+          .form-group
+            label(for='username')= t('username')
+            input#username(
+              type='text',
+              name='username',
+              value=username || '',
+              required
+            )
+            if errors && errors.find(err => err.param === 'username')
+              .error-message= errors.find(err => err.param === 'username').msg
+
+          .form-group
+            label(for='email')= t('email')
+            input#email(
+              type='email',
+              name='email',
+              value=email || '',
+              required
+            )
+            if errors && errors.find(err => err.param === 'email')
+              .error-message= errors.find(err => err.param === 'email').msg
+
+          .form-group
+            label(for='password')= t('password')
+            input#password(type='password', name='password', required)
+            if errors && errors.find(err => err.param === 'password')
+              .error-message= errors.find(err => err.param === 'password').msg
+
+          .form-group
+            label(for='confirm-password')= t('confirm_password')
+            input#confirm-password(
+              type='password',
+              name='confirmPassword',
+              required
+            )
+            if errors && errors.find(err => err.param === 'confirmPassword')
+              .error-message= errors.find(err => err.param === 'confirmPassword').msg
+
+          button.signup-button(type='submit')= t('register_button')
+        a(href='/auth/login')= t('already_have_account')

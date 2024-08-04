@@ -1,15 +1,28 @@
-mixin detail(lessonDetail)
+mixin detail(lessonDetail, courseDetail)
     if lessonDetail
-        h1= lessonDetail.title
-        div  
-            h3 #{t('lesson.detail.content')} 
+        h1.text-center.text-5xl.pb-4= lessonDetail.title
+        div.border-b.py-4  
+            h3.font-bold #{t('lesson.detail.content')} 
             p= lessonDetail.content
-        div 
-            h3 #{t('lesson.detail.reference')} 
-            a(href=`${lessonDetail.file_url}`)=lessonDetail.file_url
-        br
-        div.d-flex.justify-content-center
+        div.py-4 
+            h3.font-bold #{t('lesson.detail.reference')} 
+            a.text-blue-700(href=`${lessonDetail.file_url}`)=lessonDetail.file_url
+        div.flex.justify-center
             if lessonDetail.done 
-                button.btn.btn-outline-primary(disabled) #{t('lesson.detail.done')}
+                button(class="px-5 py-2.5 rounded-lg text-sm tracking-wider font-medium border border-blue-700 outline-none bg-transparent text-blue-700 disabled:cursor-not-allowed" disabled) #{t('lesson.detail.done')}
             else
-                button.btn.btn-outline-primary #{t('lesson.detail.markAsDone')}
+                button(class="px-5 py-2.5 rounded-lg text-sm tracking-wider font-medium border border-blue-700 outline-none bg-transparent hover:bg-blue-700 text-blue-700 hover:text-white transition-all duration-300") #{t('lesson.detail.markAsDone')}
+    if courseDetail
+        h1.text-center.text-5xl.pb-4= courseDetail.name
+        div.border-b.py-4  
+            h3.font-bold #{t('course.detail.about')} 
+            p= courseDetail.description
+        div.border-b.py-4  
+            h3.font-bold #{t('course.detail.taughtBy')}
+            div.flex.justify-between
+                div.flex.gap-1
+                    p.font-bold #{t('course.detail.instructor')}:
+                    a.text-blue-700(href=`/users/${courseDetail.instructor.id}`)= courseDetail.instructor.name
+                div.flex.gap-1
+                    p.font-bold #{t('course.detail.subInstructor')}: 
+                    a.text-blue-700(href=`users/${courseDetail.subInstructor.id}`)= courseDetail.subInstructor.name

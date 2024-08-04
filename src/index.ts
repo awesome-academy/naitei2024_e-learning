@@ -1,3 +1,16 @@
+import 'express-session';
+import { UserRole } from './enums/UserRole';
+
+declare module 'express-session' {
+  interface SessionData {
+    userId?: string;
+    username?: string;
+    name?: string;
+    role?: UserRole;
+    avatar_url?: string;
+  }
+}
+
 import createError, { HttpError } from 'http-errors';
 import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
@@ -6,6 +19,9 @@ import logger from 'morgan';
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
 import middleware from 'i18next-http-middleware';
+import session from 'express-session';
+import { sessionMiddleware } from './middleware/auth.middleware';
+import flash from 'express-flash';
 
 import indexRouter from './routes/index';
 
@@ -34,8 +50,8 @@ i18next
     supportedLngs: ['en', 'vi'],
     preload: ['en', 'vi'],
     saveMissing: true,
-    ns: ['lesson', 'user', 'common', 'exam'],
-    defaultNS: ['lesson', 'user', 'common', 'exam'],
+    ns: ['lesson', 'user', 'common', 'exam', 'course', 'auth'],
+    defaultNS: ['lesson', 'user', 'common', 'exam', 'course', 'auth'],
     backend: {
       loadPath: path.join(__dirname, './locales/{{lng}}/{{ns}}.json'),
       addPath: path.join(__dirname, 'locales/{{lng}}/{{ns}}.missing.json'),
@@ -65,6 +81,21 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   res.locals.t = req.t;
   next();
 });
+
+// Cấu hình session trong Express
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'abcxyz',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }, // Đặt thành true nếu sử dụng HTTPS
+  })
+);
+
+//thêm middleware cho việc quản lý sessions
+app.use(sessionMiddleware);
+
+app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
