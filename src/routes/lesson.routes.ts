@@ -25,4 +25,6 @@ router.get('/:id', lessonController.getLessonDetail);
 
 router.get('/', lessonController.lessonList);
 
+router.post('/:id', lessonController.markDoneLessonPost);
+
 export default router;

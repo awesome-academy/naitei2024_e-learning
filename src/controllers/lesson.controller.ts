@@ -1,6 +1,6 @@
 import { NextFunction, Response, Request } from 'express';
 import asyncHandler from 'express-async-handler';
-import { getLessonList } from '../services/lesson.service';
+import { getLessonList, markDoneLesson } from '../services/lesson.service';
 import { RequestWithCourseID } from '../helpers/lesson.helper';
 import { getCourseById } from '../services/course.service';
 
@@ -13,6 +13,7 @@ export const getLessonDetail = asyncHandler(
       lessonList,
       lessonDetail,
       courseID: req.courseID,
+      studentLessonId: lessonDetail?.studentLessons[0].id,
     });
   }
 );
@@ -63,5 +64,14 @@ export const lessonUpdateGet = asyncHandler(
 export const lessonUpdatePost = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     res.send(`lesson ${req.params.id} is updated with method POST`);
+  }
+);
+
+export const markDoneLessonPost = asyncHandler(
+  async (req: RequestWithCourseID, res: Response, next: NextFunction) => {
+    const studentLessonId = req.body.studentLessonId;
+    const response = await markDoneLesson(studentLessonId);
+    if (!response) return;
+    res.redirect(`${response.lesson.id}`);
   }
 );

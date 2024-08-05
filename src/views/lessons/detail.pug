@@ -11,7 +11,9 @@ mixin detail(lessonDetail, courseDetail)
             if lessonDetail.done 
                 button(class="px-5 py-2.5 rounded-lg text-sm tracking-wider font-medium border border-blue-700 outline-none bg-transparent text-blue-700 disabled:cursor-not-allowed" disabled) #{t('lesson.detail.done')}
             else
-                button(class="px-5 py-2.5 rounded-lg text-sm tracking-wider font-medium border border-blue-700 outline-none bg-transparent hover:bg-blue-700 text-blue-700 hover:text-white transition-all duration-300") #{t('lesson.detail.markAsDone')}
+                form(method="post") 
+                    input(type="hidden" name="studentLessonId" value=studentLessonId)
+                    button(class="px-5 py-2.5 rounded-lg text-sm tracking-wider font-medium border border-blue-700 outline-none bg-transparent hover:bg-blue-700 text-blue-700 hover:text-white transition-all duration-300" type="submit") #{t('lesson.detail.markAsDone')}
     if courseDetail
         h1.text-center.text-5xl.pb-4= courseDetail.name
         div.border-b.py-4  
