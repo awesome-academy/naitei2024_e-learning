@@ -1,33 +1,28 @@
 mixin detail(lessonDetail, courseDetail)
-  if lessonDetail
-    h1.text-center.text-5xl.pb-4= lessonDetail.title
-    .border-b.py-4
-      h3.font-bold #{ t('lesson.detail.content') } 
-      p= lessonDetail.content
-    .py-4
-      h3.font-bold #{ t('lesson.detail.reference') } 
-      a.text-blue-700(href=`${lessonDetail.file_url}`)= lessonDetail.file_url
-    .flex.justify-center
-      if lessonDetail.done
-        button.px-5.rounded-lg.text-sm.tracking-wider.font-medium.border.border-blue-700.outline-none.bg-transparent.text-blue-700(
-          class='py-2.5 disabled:cursor-not-allowed',
-          disabled
-        ) #{ t('lesson.detail.done') }
-      else
-        button.px-5.rounded-lg.text-sm.tracking-wider.font-medium.border.border-blue-700.outline-none.bg-transparent.text-blue-700.transition-all.duration-300(
-          class='py-2.5 hover:bg-blue-700 hover:text-white'
-        ) #{ t('lesson.detail.markAsDone') }
-  if courseDetail
-    h1.text-center.text-5xl.pb-4= courseDetail.name
-    .border-b.py-4
-      h3.font-bold #{ t('course.detail.about') } 
-      p= courseDetail.description
-    .border-b.py-4
-      h3.font-bold #{ t('course.detail.taughtBy') }
-      .flex.justify-between
-        .flex.gap-1
-          p.font-bold #{ t('course.detail.instructor') }:
-          a.text-blue-700(href=`/users/${courseDetail.instructor.id}`)= courseDetail.instructor.name
-        .flex.gap-1
-          p.font-bold #{ t('course.detail.subInstructor') }: 
-          a.text-blue-700(href=`users/${courseDetail.subInstructor.id}`)= courseDetail.subInstructor.name
+    if lessonDetail
+        h1.text-center.text-5xl.pb-4= lessonDetail.title
+        div.border-b.py-4  
+            h3.font-bold #{t('lesson.detail.content')} 
+            p= lessonDetail.content
+        div.py-4 
+            h3.font-bold #{t('lesson.detail.reference')} 
+            a.text-blue-700(href=`${lessonDetail.file_url}`)=lessonDetail.file_url
+        div.flex.justify-center
+            if lessonDetail.done 
+                button(class="px-5 py-2.5 rounded-lg text-sm tracking-wider font-medium border border-blue-700 outline-none bg-transparent text-blue-700 disabled:cursor-not-allowed" disabled) #{t('lesson.detail.done')}
+            else
+                button(class="px-5 py-2.5 rounded-lg text-sm tracking-wider font-medium border border-blue-700 outline-none bg-transparent hover:bg-blue-700 text-blue-700 hover:text-white transition-all duration-300") #{t('lesson.detail.markAsDone')}
+    if courseDetail
+        h1.text-center.text-5xl.pb-4= courseDetail.name
+        div.border-b.py-4  
+            h3.font-bold #{t('course.detail.about')} 
+            p= courseDetail.description
+        div.border-b.py-4  
+            h3.font-bold #{t('course.detail.taughtBy')}
+            div.flex.justify-between
+                div.flex.gap-1
+                    p.font-bold #{t('course.detail.instructor')}:
+                    a.text-blue-700(href=`/users/${courseDetail.instructor.id}`)= courseDetail.instructor.name
+                div.flex.gap-1
+                    p.font-bold #{t('course.detail.subInstructor')}: 
+                    a.text-blue-700(href=`users/${courseDetail.subInstructor.id}`)= courseDetail.subInstructor.name
