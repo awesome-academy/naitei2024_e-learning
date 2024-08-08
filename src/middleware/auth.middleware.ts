@@ -5,17 +5,9 @@ export const sessionMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.session.userId) {
+  if (req.session.user) {
     // Nếu có userId trong session, lưu thông tin người dùng vào res.locals
-    res.locals.user = {
-      id: req.session.userId,
-      username: req.session.username,
-      name: req.session.name,
-      role: req.session.role,
-      avatar_url: req.session.avatar_url,
-    };
-  } else {
-    res.locals.user = null;
+    res.locals.current_user = req.session.user;
   }
   next();
 };

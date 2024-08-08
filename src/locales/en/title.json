@@ -7,6 +7,9 @@
     "list_student": "List Student",
     "courses": "Courses",
     "list_course": "List Course",
-    "user_detail": "User Detail"
+    "user_detail": "User Detail",
+    "course_detail": "Course Detail",
+    "profile": "User Profile",
+    "my_courses": "My Courses"
   }
 }

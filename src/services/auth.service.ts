@@ -4,7 +4,9 @@ import { User } from '../entity/user.entity';
 const userRepository = AppDataSource.getRepository(User);
 
 // Hàm tìm người dùng theo username
-export const findUserByUsername = async (username: string): Promise<User | null> => {
+export const findUserByUsername = async (
+  username: string
+): Promise<User | null> => {
   const user = await userRepository.findOneBy({ username });
   return user;
 };

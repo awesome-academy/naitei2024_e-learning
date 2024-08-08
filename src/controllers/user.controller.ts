@@ -40,6 +40,7 @@ export const getInstructorById = async (req: Request, res: Response) => {
     const managedCourses = await courseService.getCoursesByInstructorId(userId);
 
     res.render('instructors/detail', {
+      title: req.t('title.user_detail'),
       instructor,
       courses: managedCourses || [],
     });

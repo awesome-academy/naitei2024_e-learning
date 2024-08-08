@@ -1,6 +1,7 @@
 {
   "error": {
     "userNotFound": "Không tìm thấy người dùng",
+    "courseNotFound": "Không tìm thấy khóa học",
     "internalServerError": "Lỗi máy chủ",
     "badRequest": "Yêu cầu không hợp lệ",
     "unauthorized": "Không được ủy quyền",

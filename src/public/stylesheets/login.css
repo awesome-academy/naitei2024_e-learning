@@ -201,8 +201,8 @@ a:hover {
 }
 .error-message {
     color: red;
-    font-size: 0.75rem; 
-    font-style: italic; 
+    font-size: 0.75rem;
+    font-style: italic;
     margin-left: 30px;
     margin-top: 0.25rem;
 }

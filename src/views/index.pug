@@ -3,35 +3,46 @@ extends layout
 block content
   body
     .container.mx-auto.px-4.py-4.flex.items-center
-      div(class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-16")
-        div(class="md:w-1/2 mb-4 md:mb-0")
-          h1(class="text-4xl font-bold mb-2") Welcome to the
-          p(class="text-4xl font-bold text-indigo-600 mb-4") Smart Education
-          p(class="text-gray-600 mb-6 text-justify") Learn from the best teachers around the world. We provide the best education for you. Join us now and explore the world of education.
+      .max-w-6xl.mx-auto.flex.flex-col.items-center.justify-between.gap-16(
+        class='md:flex-row'
+      )
+        .mb-4(class='md:w-1/2 md:mb-0')
+          h1.text-4xl.font-bold.mb-2 Welcome to the
+          p.text-4xl.font-bold.text-indigo-600.mb-4 Smart Education
+          p.text-gray-600.mb-6.text-justify Learn from the best teachers around the world. We provide the best education for you. Join us now and explore the world of education.
           .flex.space-x-4
-            a(href='/courses' class="hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white px-4 py-2 rounded-md bg-indigo-700 transition") Get Started
+            a.text-white.px-4.py-2.rounded-md.bg-indigo-700.transition(
+              href='/courses',
+              class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
+            ) Get Started
 
-        div(class="md:w-1/2 relative")
-          img.w-full.h-auto(src="/images/banner.png" alt="Learning illustration")
+        .relative(class='md:w-1/2')
+          img.w-full.h-auto(
+            src='/images/banner.png',
+            alt='Learning illustration'
+          )
 
     .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
-      div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6")
+      .grid.gap-6.mb-6(class='sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4')
         .bg-teal-100.p-4.rounded-lg.flex.flex-col.items-center
           span.text-3xl.font-bold.text-teal-700 24
           span.text-sm.text-teal-600 Enrolled Courses
-          a.text-teal-500.text-sm.mt-2(href="#") View details →
+          a.text-teal-500.text-sm.mt-2(href='#') View details →
         .bg-purple-100.p-4.rounded-lg.flex.flex-col.items-center
           span.text-3xl.font-bold.text-purple-700 56
           span.text-sm.text-purple-600 Lessons
-          a.text-purple-500.text-sm.mt-2(href="#") View details →
+          a.text-purple-500.text-sm.mt-2(href='#') View details →
         .bg-orange-100.p-4.rounded-lg.flex.flex-col.items-center
           span.text-3xl.font-bold.text-orange-700 17
           span.text-sm.text-orange-600 Assignments
-          a.text-orange-500.text-sm.mt-2(href="#") View details →
+          a.text-orange-500.text-sm.mt-2(href='#') View details →
         .flex.flex-col.items-center
           .text-lg.font-semibold.mb-2 Progress
           .w-16.h-16.rounded-full.border-2.border-orange-500.flex.items-center.justify-center
-            img.w-14.h-14.rounded-full.object-cover(src="/images/avatar.png" alt="User")
+            img.w-14.h-14.rounded-full.object-cover(
+              src='/images/avatar.png',
+              alt='User'
+            )
           .mt-2.text-center
             .font-semibold Alesia Karapova
             .text-sm.text-gray-500 Student
@@ -39,7 +50,7 @@ block content
     .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
       .flex.justify-between.items-center.mb-6
         h2.text-xl.font-bold Continue Learning
-        a.text-teal-500(href="#") See All
+        a.text-teal-500(href='/courses#learning') See All
       .space-y-4
         each course in courseLearns
           .flex.items-center.justify-between.bg-gray-50.p-4.rounded-lg
@@ -50,26 +61,42 @@ block content
                 .text-sm.text-gray-500= `${course.level} • ${course.duration}`
             .flex.items-center.space-x-4
               .w-32.bg-gray-200.rounded-full.h-2
-                .bg-teal-500.rounded-full.h-2(style=`width: ${course.progress}`)
+                .bg-teal-500.rounded-full.h-2(
+                  style=`width: ${course.progress}`
+                )
               span.text-sm.text-gray-500= course.progress
-              span.text-sm(class= course.status === 'Completed' ? 'text-green-500' : 'text-orange-500')= course.status
-              svg.w-6.h-6.text-gray-400(fill="none" stroke="currentColor" viewBox="0 0 24 24")
-                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7")
+              span.text-sm(
+                class=course.status === 'Completed' ? 'text-green-500' : 'text-orange-500'
+              )= course.status
+              svg.w-6.h-6.text-gray-400(
+                fill='none',
+                stroke='currentColor',
+                viewBox='0 0 24 24'
+              )
+                path(
+                  stroke-linecap='round',
+                  stroke-linejoin='round',
+                  stroke-width='2',
+                  d='M9 5l7 7-7 7'
+                )
 
     .mb-6
     .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
       .flex.justify-between.items-center.mb-6
         h2.text-xl.font-bold Recommended for you
-        a.text-teal-500(href="#") See All
-      div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6")
-        each course in courseRecommends
-          a.block.rounded-lg.p-4.mt-4.transition-all.duration-300.ease-in-out(
-            class="hover:shadow-xl hover:scale-105 cursor-pointer"
+        a.text-teal-500(href='/courses#recommend') See All
+      .grid.gap-6(class='sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3')
+        each course in courseRecommends.slice(0, 6)
+          a.block.rounded-lg.p-4.mt-4.transition-all.duration-300.ease-in-out.cursor-pointer(
+            class='hover:shadow-xl hover:scale-105',
             href=`/courses/${course.id}`
           )
             .bg-gray-50.rounded-lg.overflow-hidden
               .flex.justify-center.items-center.h-48
-                img(src='/images/python.png' alt='Image' class='h-full')
+                img.h-full(
+                  src=course.image_url === null ? '/images/course.png' : course.image_url,
+                  alt='Image'
+                )
               .p-4
                 h3.font-semibold.mb-2= course.name
                 p.text-sm.text-gray-600.mb-4= course.description
@@ -80,18 +107,18 @@ block content
     .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
       .flex.justify-between.items-center.mb-6
         h2.text-xl.font-bold Instructor
-        a.text-teal-500(href="/users/instructors") See All
-      div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6")
+        a.text-teal-500(href='/users/instructors') See All
+      .grid.gap-6(class='sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3')
         each instructor in instructors.slice(0, 6)
-          a.block.rounded-lg.p-4.mt-4.transition-all.duration-300.ease-in-out(
-            class="hover:shadow-xl hover:scale-105 cursor-pointer"
+          a.block.rounded-lg.p-4.mt-4.transition-all.duration-300.ease-in-out.cursor-pointer(
+            class='hover:shadow-xl hover:scale-105',
             href=`/users/${instructor.id}`
           )
             .bg-gray-50.rounded-lg.overflow-hidden
               .flex.justify-center.items-center.h-48
-                img(
-                  src= (instructor.avatar_url) ? instructor.avatar_url : '/images/instructor.png'
-                  alt='Image' class='h-full'
+                img.h-full(
+                  src=instructor.avatar_url ? instructor.avatar_url : '/images/instructor.png',
+                  alt='Image'
                 )
               .p-4
                 h3.font-semibold.mb-2= instructor.name
@@ -103,18 +130,18 @@ block content
     .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
       .flex.justify-between.items-center.mb-6
         h2.text-xl.font-bold Student
-        a.text-teal-500(href="/users/students") See All
-      div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6")
+        a.text-teal-500(href='/users/students') See All
+      .grid.gap-6(class='sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3')
         each student in students.slice(0, 6)
-          a.block.rounded-lg.p-4.mt-4.transition-all.duration-300.ease-in-out(
-            class="hover:shadow-xl hover:scale-105 cursor-pointer"
+          a.block.rounded-lg.p-4.mt-4.transition-all.duration-300.ease-in-out.cursor-pointer(
+            class='hover:shadow-xl hover:scale-105',
             href=`/users/${student.id}`
           )
             .bg-gray-50.rounded-lg.overflow-hidden
               .flex.justify-center.items-center.h-48
-                img(
-                  src= (student.avatar_url) ? student.avatar_url : '/images/student.png'
-                  alt='Image' class='h-full'
+                img.h-full(
+                  src=student.avatar_url ? student.avatar_url : '/images/student.png',
+                  alt='Image'
                 )
               .p-4
                 h3.font-semibold.mb-2= student.name

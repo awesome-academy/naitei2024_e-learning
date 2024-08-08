@@ -3,57 +3,62 @@ extends ../layout
 block content
   body
     .max-w-2xl.mx-auto.bg-white.shadow-lg.rounded-lg.p-6
-      div(class="grid grid-cols-2 gap-4")
-
-        div(class="flex flex-col items-center justify-center")
+      .grid.grid-cols-2.gap-4
+        .flex.flex-col.items-center.justify-center
           .flex.items-center.space-x-4
             .w-24.h-24.rounded-full.mr-4.overflow-hidden.flex-shrink-0
               if instructor.avatar_url
                 img.w-full.h-full.object-cover(
-                  src= instructor.avatar_url
-                  alt= instructor.username
+                  src=instructor.avatar_url,
+                  alt=instructor.username
                 )
               else
                 img.w-full.h-full.object-cover(
-                  src= '/images/instructor.png' 
-                  alt= instructor.username
+                  src='/images/default_avatar.png',
+                  alt=instructor.username
                 )
 
           .mt-4
-          h2.text-2xl.font-bold.mb-2.text-center #{instructor.name}
-          p.text-sm.text-gray-500 #{instructor.email}
+          h2.text-2xl.font-bold.mb-2.text-center #{ instructor.name }
+          p.text-sm.text-gray-500 #{ instructor.email }
 
         div
           .mt-4
             ul
               li.mt-2
-                strong #{t('user.detail.name')}:
-                |  #{instructor.name}
+                strong #{ t('user.detail.name') }:
+                | &nbsp;#{ instructor.name }
               li.mt-2
-                strong #{t('user.detail.role')}:
-                |  #{instructor.role}
+                strong #{ t('user.detail.role') }:
+                | &nbsp;#{ instructor.role }
               li.mt-2
-                strong #{t('user.detail.birthday')}:
-                | #{instructor.birthday ? new Date(instructor.birthday).toLocaleDateString("en-GB") : 'N/A'}
+                strong #{ t('user.detail.birthday') }:
+                | &nbsp;#{ instructor.birthday ? new Date(instructor.birthday).toLocaleDateString("en-GB") : 'N/A' }
               li.mt-2
-                strong #{t('user.detail.phone')}:
-                |  #{instructor.phone ? instructor.phone : 'N/A'}
+                strong #{ t('user.detail.phone') }:
+                | &nbsp;#{ instructor.phone ? instructor.phone : 'N/A' }
 
     .mb-6
     .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
-      h2.text-xl.font-bold.mb-4 #{t('user.detail.about')}
-      p.text-gray-600.text-justify= instructor.about
+      h2.text-xl.font-bold.mb-4 #{ t('user.detail.about') }
+      p.text-gray-600.text-justify= instructor.about || 'N/A'
       .mb-6
       .flex.justify-between.items-center.mb-6
-        h2.text-xl.font-bold #{t('user.detail.courses')}
-      div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6")
+        h2.text-xl.font-bold #{ t('user.detail.courses') }
+      .grid.gap-6(class='sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3')
         each course in courses
-          .bg-gray-50.rounded-lg.overflow-hidden
-            .flex.justify-center.items-center.h-48
-              img(src=course.image_url || '/images/course.png' alt='Course Image' class='h-full')
-            .p-4
-              h3.font-semibold.mb-2
-                a(href=`/courses/${course.id}`)= course.name
-              .p.text-sm.text-gray-600.mb-4= course.description
-              .flex.justify-between.items-center.text-sm.text-gray-500
-                span= course.level + ' • ' + course.duration
+          a.block.bg-white.shadow-md.rounded-lg.p-4.mt-4.transition-all.duration-300.ease-in-out.cursor-pointer(
+            class='hover:shadow-xl hover:scale-105',
+            href=`/courses/${course.id}`
+          )
+            .rounded-lg.overflow-hidden
+              .flex.justify-center.items-center.h-48
+                img.h-full(
+                  src=course.image_url === null ? '/images/course.png' : course.image_url,
+                  alt='Course Image'
+                )
+              .p-4
+                h3.font-semibold.mb-2= course.name
+                p.text-sm.text-gray-600.mb-4= course.description
+                .flex.justify-between.items-center.text-sm.text-gray-500
+                  span= `${course.level} • ${course.duration}`

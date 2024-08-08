@@ -9,31 +9,45 @@ block content
     if courses.length > 0
       .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
         .flex.justify-between.items-center.mb-6
-          h2.text-xl.font-bold #{t('title.courses')}
-        div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6")
+          h2.text-xl.font-bold #{ t('title.courses') }
+        .grid.gap-6(class='sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3')
           each course in courses
-            .bg-gray-50.rounded-lg.overflow-hidden
-              .flex.justify-center.items-center.h-48
-                img(src=course.image_url || '/images/course.png' alt='Course Image' class='h-full')
-              .p-4
-                h3.font-semibold.mb-2
-                  a(href=`/courses/${course.id}`)= course.name
-                p.text-sm.text-gray-600.mb-4= course.description
+            a.block.rounded-lg.p-4.mt-4.transition-all.duration-300.ease-in-out.cursor-pointer(
+              class='hover:shadow-xl hover:scale-105',
+              href=`/courses/${course.id}`
+            )
+              .bg-gray-50.rounded-lg.overflow-hidden
+                .flex.justify-center.items-center.h-48
+                  img.h-full(
+                    src=course.image_url || '/images/course.png',
+                    alt='Course Image'
+                  )
+                .p-4
+                  h3.font-semibold.mb-2= course.name
+                  p.text-sm.text-gray-600.mb-4= course.description
+                  .flex.justify-between.items-center.text-sm.text-gray-500
+                    span= `${course.level} • ${course.duration}`
 
     // Hiển thị danh sách giảng viên nếu có
     if instructors.length > 0
       .mb-6
       .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6
         .flex.justify-between.items-center.mb-6
-          h2.text-xl.font-bold #{t('title.instructors')}
-        div(class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6")
+          h2.text-xl.font-bold #{ t('title.instructors') }
+        .grid.gap-6(class='sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3')
           each instructor in instructors
-            .bg-gray-50.rounded-lg.overflow-hidden
-              .flex.justify-center.items-center.h-48
-                img(src=instructor.avatar_url || '/images/instructor.png' alt='Instructor Image' class='h-full')
-              .p-4
-                h3.font-semibold.mb-2
-                  a(href=`/users/${instructor.id}`)= instructor.name
-                p.text-sm.text-gray-600.mb-4= instructor.description
-                .flex.justify-between.items-center.text-sm.text-gray-500
-                  span= `${instructor.about}`
+            a.block.rounded-lg.p-4.mt-4.transition-all.duration-300.ease-in-out.cursor-pointer(
+              class='hover:shadow-xl hover:scale-105',
+              href=`/users/${instructor.id}`
+            )
+              .bg-gray-50.rounded-lg.overflow-hidden
+                .flex.justify-center.items-center.h-48
+                  img.h-full(
+                    src=instructor.avatar_url || '/images/instructor.png',
+                    alt='Instructor Image'
+                  )
+                .p-4
+                  h3.font-semibold.mb-2= instructor.name
+                  p.text-sm.text-gray-600.mb-4= instructor.about
+                  .flex.justify-between.items-center.text-sm.text-gray-500
+                    span= `Instructor • 5 courses • 1058 students`

@@ -7,6 +7,9 @@
     "list_student": "Danh sách sinh viên",
     "courses": "Khóa học",
     "list_course": "Danh sách khóa học",
-    "user_detail": "Chi tiết người dùng"
+    "user_detail": "Chi tiết người dùng",
+    "course_detail": "Chi tiết khóa học",
+    "profile": "Trang cá nhân",
+    "my_courses": "Khóa học của tôi"
   }
 }

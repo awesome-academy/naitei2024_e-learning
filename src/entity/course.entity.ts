@@ -13,6 +13,7 @@ import { User } from './user.entity';
 import { Enrollment } from './enrollment.entity';
 import { Lesson } from './lesson.entity';
 import { Assignment } from './assignment.entity';
+import { CourseLevel } from '../enums/CourseLevel';
 
 @Entity('courses')
 export class Course {
@@ -25,14 +26,18 @@ export class Course {
   @Column()
   description: string;
 
-  @Column({ nullable: true })
-  image_url: string;
+  @Column({
+    type: 'enum',
+    enum: CourseLevel,
+    default: CourseLevel.BEGINNER,
+  })
+  level: CourseLevel;
 
   @Column({ nullable: true })
   duration: string;
 
   @Column({ nullable: true })
-  level: string;
+  image_url: string;
 
   @ManyToOne(() => User, user => user.instructorCourses, { nullable: false })
   @JoinColumn({ name: 'instructor_id' })

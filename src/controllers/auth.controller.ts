@@ -86,11 +86,7 @@ export const loginPost = asyncHandler(
 
     if (user) {
       // Lưu thông tin người dùng vào session
-      req.session.userId = user.id;
-      req.session.username = user.username;
-      req.session.name = user.name;
-      req.session.role = user.role;
-      req.session.avatar_url = user.avatar_url;
+      req.session.user = user;
 
       if (user.role === UserRole.ADMIN) {
         res.redirect('/admin');

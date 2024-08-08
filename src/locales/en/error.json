@@ -1,6 +1,7 @@
 {
   "error": {
     "userNotFound": "User not found",
+    "courseNotFound": "Course not found",
     "internalServerError": "Internal server error",
     "badRequest": "Bad request",
     "unauthorized": "Unauthorized",

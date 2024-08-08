@@ -8,7 +8,12 @@ import * as lessonService from '../services/lesson.service';
 
 export const courseList = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    res.send('course list');
+    const courseRecommends = await courseService.getCourseList();
+    res.render('courses/index', {
+      title: req.t('title.list_course'),
+      courseRecommends,
+      currentPath: req.baseUrl,
+    });
   }
 );
 
@@ -46,6 +51,7 @@ export const courseDetail = async (req: Request, res: Response) => {
 
   try {
     res.render('courses/detail', {
+      title: req.t('title.course_detail'),
       course,
       CourseLevel,
       lessons,
