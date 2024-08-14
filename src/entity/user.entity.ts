@@ -5,6 +5,7 @@ import { StudentLesson } from './student_lesson.entity';
 import { Answer } from './answer.entity';
 import { Grade } from './grade.entity';
 import { UserRole } from '../enums/UserRole';
+import { Specialization } from '../enums/Specialization';
 import * as bcrypt from 'bcrypt';
 
 @Entity('users')
@@ -42,6 +43,13 @@ export class User {
 
   @Column({ nullable: true })
   avatar_url: string;
+
+  @Column({
+    type: 'enum',
+    enum: Specialization,
+    nullable: true,
+  })
+  specialization: Specialization;
 
   @OneToMany(() => Course, course => course.instructor)
   instructorCourses: Course[];

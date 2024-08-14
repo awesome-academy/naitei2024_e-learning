@@ -12,3 +12,12 @@ body {
   transform: translateX(0.5rem); 
   width: 12rem; 
 }
+
+.role-button.active {
+  background-color: #3560b5;
+  color:white;
+}
+
+.role-button:hover {
+  background-color: #4343a0;
+}

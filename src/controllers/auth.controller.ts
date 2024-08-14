@@ -12,6 +12,7 @@ import { RegisterDTO } from '../dtos/register.dto';
 import { LoginDTO } from '../dtos/login.dto';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
+import { Specialization } from '../enums/Specialization';
 
 export const registerGet = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -38,20 +39,39 @@ export const registerPost = asyncHandler(
       });
     }
 
-    // Tiến hành xử lý đăng ký
+    // Kiểm tra xem người dùng đã tồn tại chưa
+    const userExists = await findUserByUsername(dto.username);
+    if (userExists) {
+      req.flash('error', i18next.t('username_exists'));
+      return res.redirect('/auth/register');
+    }
+
+    // Tạo đối tượng User mới
     const user = new User();
     user.name = dto.name;
     user.username = dto.username;
     user.email = dto.email;
     user.hash_password = await User.hashPassword(dto.password); // Hash mật khẩu
 
-    const userExists = await findUserByUsername(dto.username);
-    if (userExists) {
-      req.flash('error', i18next.t('username_exists'));
+    if (dto.role === UserRole.INSTRUCTOR) {
+      user.about = dto.about || '';
+      user.specialization = dto.specialization || Specialization.NONE;
+      user.role = UserRole.PENDING_APPROVAL; // Đặt trạng thái là PENDING_APPROVAL
     } else {
-      await saveUser(user);
+      user.role = UserRole.STUDENT;
+    }
+
+    // Lưu người dùng vào cơ sở dữ liệu
+    await saveUser(user);
+
+    // Thông báo cho người dùng
+    if (dto.role === UserRole.INSTRUCTOR) {
+      req.flash('success', i18next.t('register.instructor_pending_approval'));
+    } else {
       req.flash('success', i18next.t('user_saved'));
     }
+
+    // Chuyển hướng đến trang chính
     res.redirect('/auth/register');
   }
 );
@@ -85,6 +105,11 @@ export const loginPost = asyncHandler(
     const user = await authenticateUser(dto.username, dto.password);
 
     if (user) {
+      if (user.role === UserRole.PENDING_APPROVAL) {
+        req.flash('error', i18next.t('login.errors.pending_approval'));
+        return res.redirect('/auth/login');
+      }
+
       // Lưu thông tin người dùng vào session
       req.session.user = user;
 

@@ -13,5 +13,8 @@
     "my_courses": "My Courses",
     "list_lesson": "List Lesson",
     "lesson_detail": "Lesson Detail"
+  },
+  "message": {
+    "found_results": "Found {{count}} results for the keyword '{{keyword}}'"
   }
 }

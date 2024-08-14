@@ -1,61 +1,56 @@
-doctype html
-html
-  head
-    title= t('register_title')
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet', href='/stylesheets/login.css')
-    link(
-      rel='stylesheet',
-      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'
-    )
+extends common-layout
 
-  body
-    .background
-      .login-container
-        img.logo(src='/favicon.ico', alt='Logo')
-        h2= t('welcome_message')
+block content
+  .flex.h-screen.bg-gray-100.pt-16
+    .flex-1.flex.flex-col.items-center
+      img.h-50(src='/images/banner.png', alt='SmartEdu Logo') 
+
+    .flex-1.flex.items-center.justify-center.bg-gray-100
+      .max-w-md.w-full.bg-white.shadow-lg.rounded-lg.p-8(
+        style='margin-top: -8rem'
+      )
+        h2.text-2xl.font-semibold.mb-6.text-center= t('login.title')
 
         //- Hiển thị thông báo lỗi
         if error_message
-          p.error-message= error_message
+          p.text-l.mb-6.text-red-500.text-center.error-message= error_message
 
         form(action='/auth/login', method='post')
-          .form-group
-            label(for='username')= t('username')
-            input#username(type='text', name='username', required)
-            // Hiển thị thông báo lỗi cho trường username
+          .form-group.mb-4
+            label.text-sm.italic(for='username')= t('username')
+            input#username.w-full.p-2.border.border-gray-300.rounded-md(
+              type='text',
+              name='username',
+              required
+            )
             if errors && errors.find(err => err.param === 'username')
-              .error-message= errors.find(err => err.param === 'username').msg
-          .form-group
-            label(for='password')= t('password')
-            .password-wrapper
-              input#password(type='password', name='password', required)
-              // Hiển thị thông báo lỗi cho trường password
-              if errors && errors.find(err => err.param === 'password')
-                .error-message= errors.find(err => err.param === 'password').msg
-          .form-group.checkbox-group
-            input#show-password(type='checkbox')
+              p.text-red-500.text-sm.italic= t('login.errors.username_length')
+          .form-group.mb-4
+            label.text-sm.italic(for='password')= t('password')
+            input#password.w-full.p-2.border.border-gray-300.rounded-md(
+              type='password',
+              name='password',
+              required
+            )
+            if errors && errors.find(err => err.param === 'password')
+              p.text-red-500.text-sm.italic= t('login.errors.password_length')
+          .form-group.flex.items-center.mb-4
+            input#show-password.mr-2(type='checkbox')
             label(for='show-password')= t('show_password')
-          .form-group
-            a(href='#')= t('forgot_password')
-            button(type='submit')= t('sign_in')
-          .or-divider= t('or')
-          .form-group
-            button.google-login(type='button')
-              i.fab.fa-google
-              | #{ t('login_with_google') }
-          .form-group
-            a.signup(href='/auth/register')= t('new_user_sign_up')
+          button.w-full.bg-blue-500.text-white.py-2.rounded-md(
+            type='submit',
+            class='hover:bg-blue-600'
+          )= t('sign_in')
+          .or-divider.flex.items-center.my-4.justify-center
+            .flex-grow.border-t.border-gray-300
+            span.mx-2.text-gray-500= t('or')
+            .flex-grow.border-t.border-gray-300
+          button.google-login.w-full.bg-red-500.text-white.py-2.rounded-md.flex.items-center.justify-center(
+            type='button',
+            class='hover:bg-red-600'
+          )
+            i.fab.fa-google.mr-2
+            | #{ t('login_with_google') }
+          a.signup.block.text-blue-500.text-center.mt-4(href='/auth/register')= t('new_user_sign_up')
 
-          // Language Selector
-          .language-selector
-            a(href='?lng=en')
-              img.flag(src='/images/eng-flag.png', alt='English Flag')
-              | #{ t('english') }
-            |
-            a(href='?lng=vi')
-              img.flag(src='/images/vietnam-flag.png', alt='Vietnamese Flag')
-              | #{ t('vietnamese') }
-
-    script(src='/javascripts/login.js')
+  script(src='/javascripts/login.js')

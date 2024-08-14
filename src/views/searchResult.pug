@@ -5,6 +5,11 @@ block content
     if error_message
       p.error-message= error_message
 
+    // Hiển thị thông báo kết quả tìm kiếm
+    if courses.length > 0 || instructors.length > 0
+      p.text-xl.font-bold.mt-4.text-gray-500.pb-4.italic
+        | #{ t('message.found_results', { "count": (courses.length + instructors.length).toString(), "keyword": keyword }) }
+
     // Hiển thị danh sách khóa học nếu có
     if courses.length > 0
       .max-w-6xl.mx-auto.bg-white.rounded-lg.shadow-md.p-6

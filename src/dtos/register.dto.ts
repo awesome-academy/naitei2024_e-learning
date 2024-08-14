@@ -6,8 +6,12 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
   ValidationArguments,
+  IsOptional,
+  IsEnum,
 } from 'class-validator';
 import i18next from 'i18next';
+import { Specialization } from '../enums/Specialization';
+import { UserRole } from '../enums/UserRole';
 
 @ValidatorConstraint({ name: 'matchPassword', async: false })
 export class MatchPasswordConstraint implements ValidatorConstraintInterface {
@@ -40,4 +44,17 @@ export class RegisterDTO {
   @IsString({ message: i18next.t('register.errors.confirm_password_required') })
   @Validate(MatchPasswordConstraint)
   confirmPassword: string;
+
+  @IsEnum(UserRole, { message: i18next.t('register.errors.role_invalid') })
+  role: UserRole;
+
+  @IsOptional()
+  @IsString({ message: i18next.t('register.errors.about_required') })
+  about?: string;
+
+  @IsOptional()
+  @IsEnum(Specialization, {
+    message: i18next.t('register.errors.specialization_invalid'),
+  })
+  specialization?: Specialization;
 }

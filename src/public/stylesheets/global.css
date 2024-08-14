@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.4.9 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.7 | MIT License | https://tailwindcss.com
 *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
@@ -585,9 +585,17 @@ video {
 .col-span-5 {
   grid-column: span 5 / span 5;
 }
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .my-6 {
   margin-top: 1.5rem;
@@ -616,6 +624,9 @@ video {
 }
 .ml-4 {
   margin-left: 1rem;
+}
+.ml-auto {
+  margin-left: auto;
 }
 .mr-10 {
   margin-right: 2.5rem;
@@ -713,6 +724,9 @@ video {
 .h-full {
   height: 100%;
 }
+.h-screen {
+  height: 100vh;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -767,11 +781,20 @@ video {
 .max-w-6xl {
   max-width: 72rem;
 }
+.max-w-md {
+  max-width: 28rem;
+}
 .max-w-screen-xl {
   max-width: 1280px;
 }
+.flex-1 {
+  flex: 1 1 0%;
+}
 .flex-shrink-0 {
   flex-shrink: 0;
+}
+.flex-grow {
+  flex-grow: 1;
 }
 .border-collapse {
   border-collapse: collapse;
@@ -860,6 +883,11 @@ video {
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.space-x-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
@@ -927,6 +955,12 @@ video {
 }
 .border-4 {
   border-width: 4px;
+}
+.border-l {
+  border-left-width: 1px;
+}
+.border-t {
+  border-top-width: 1px;
 }
 .border-none {
   border-style: none;
@@ -1092,6 +1126,9 @@ video {
 .p-6 {
   padding: 1.5rem;
 }
+.p-8 {
+  padding: 2rem;
+}
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1147,6 +1184,9 @@ video {
 .pb-2 {
   padding-bottom: 0.5rem;
 }
+.pb-4 {
+  padding-bottom: 1rem;
+}
 .pb-5 {
   padding-bottom: 1.25rem;
 }
@@ -1167,6 +1207,9 @@ video {
 }
 .pr-8 {
   padding-right: 2rem;
+}
+.pt-16 {
+  padding-top: 4rem;
 }
 .pt-6 {
   padding-top: 1.5rem;
@@ -1450,6 +1493,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
 .hover\:bg-gray-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -1473,6 +1520,10 @@ video {
 .hover\:bg-red-400:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+.hover\:bg-red-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 .hover\:bg-red-700:hover {
   --tw-bg-opacity: 1;

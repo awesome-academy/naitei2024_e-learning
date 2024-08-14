@@ -13,5 +13,8 @@
     "my_courses": "Khóa học của tôi",
     "list_lesson": "Danh sách bài học",
     "lesson_detail": "Chi tiết bài học"
+  },
+  "message": {
+    "found_results": "Tìm thấy {{count}} kết quả với từ khóa '{{keyword}}'"
   }
 }
