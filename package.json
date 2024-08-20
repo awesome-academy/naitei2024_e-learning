@@ -20,6 +20,8 @@
     "seed": "npx ts-node src/seed.ts"
   },
   "dependencies": {
+    "@types/passport": "^1.0.16",
+    "@types/passport-google-oauth20": "^2.0.16",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
@@ -41,6 +43,8 @@
     "morgan": "~1.10.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.10.3",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "pug": "^3.0.3",
     "react": "^18.3.1",
     "reflect-metadata": "^0.2.2",

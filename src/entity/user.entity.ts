@@ -13,6 +13,9 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column({ nullable: true })
+  googleId?: string;
+
   @Column()
   email: string;
 

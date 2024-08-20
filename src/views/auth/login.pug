@@ -49,8 +49,9 @@ block content
             type='button',
             class='hover:bg-red-600'
           )
-            i.fab.fa-google.mr-2
-            | #{ t('login_with_google') }
+            a(href="/auth/google", class="flex items-center")
+              i.fab.fa-google.mr-2
+              | #{ t('login_with_google') }
           a.signup.block.text-blue-500.text-center.mt-4(href='/auth/register')= t('new_user_sign_up')
 
   script(src='/javascripts/login.js')

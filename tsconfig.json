@@ -16,7 +16,8 @@
     /* Type Checking */
     "strict": true,
     "strictPropertyInitialization": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "typeRoots": ["./types"],
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/public/"]

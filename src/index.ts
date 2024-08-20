@@ -14,6 +14,8 @@ import { sessionMiddleware } from './middleware/auth.middleware';
 import { User } from './entity/user.entity';
 import * as EnumType from './enums';
 import { THREE_HOURS } from './constants';
+import passport from 'passport';
+import './config/passport';
 
 import indexRouter from './routes/index';
 
@@ -137,6 +139,10 @@ app.use(
 
 //thêm middleware cho việc quản lý sessions
 app.use(sessionMiddleware);
+
+// Cấu hình Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Cấu hình flash messages
 app.use(flash());
