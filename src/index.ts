@@ -137,12 +137,12 @@ app.use(
   })
 );
 
-//thêm middleware cho việc quản lý sessions
-app.use(sessionMiddleware);
-
 // Cấu hình Passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+//thêm middleware cho việc quản lý sessions
+app.use(sessionMiddleware);
 
 // Cấu hình flash messages
 app.use(flash());

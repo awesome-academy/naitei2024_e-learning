@@ -13,6 +13,7 @@ import { LoginDTO } from '../dtos/login.dto';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 import { Specialization } from '../enums/Specialization';
+import passport from 'passport';
 
 export const registerGet = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -51,7 +52,12 @@ export const registerPost = asyncHandler(
     user.name = dto.name;
     user.username = dto.username;
     user.email = dto.email;
-    user.hash_password = await User.hashPassword(dto.password); // Hash mật khẩu
+    // Hash mật khẩu nếu authType là 'local'
+    if (dto.authType === 'local' && dto.password) {
+      user.hash_password = await user.hashPassword(dto.password, 'local');
+    } else {
+      user.hash_password = ''; // Hoặc giá trị khác nếu cần
+    }
 
     if (dto.role === UserRole.INSTRUCTOR) {
       user.about = dto.about || '';
@@ -132,4 +138,44 @@ export const logout = (req: Request, res: Response, next: NextFunction) => {
     }
     res.redirect('/');
   });
+};
+
+export const googleCallback = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  console.log('Received callback request');
+
+  passport.authenticate('google', { session: true }, (err, user: User) => {
+    if (err) {
+      console.log('Error during authentication:', err);
+      return next(err);
+    }
+
+    if (!user) {
+      console.log('User not found');
+      return res.redirect('/auth/login');
+    }
+
+    try {
+      // Gọi `login` để lưu thông tin người dùng vào session
+      req.logIn(user, err => {
+        if (err) {
+          console.log('Error logging in user:', err);
+          return next(err);
+        }
+
+        // Lưu thông tin người dùng vào session
+        req.session.user = user;
+        console.log('User saved to session:', user);
+
+        // Tiếp tục chuyển hướng sau khi lưu thông tin người dùng vào session
+        res.redirect('/');
+      });
+    } catch (error) {
+      console.log('Error saving user to session:', error);
+      next(error);
+    }
+  })(req, res, next);
 };

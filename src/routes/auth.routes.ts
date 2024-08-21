@@ -12,19 +12,15 @@ router.post('/login', authController.loginPost);
 
 router.get('/logout', authController.logout);
 
-// Định tuyến xác thực với Google
+// Định tuyến để bắt đầu quy trình xác thực Google
 router.get(
   '/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+  })
 );
 
-// Callback từ Google
-router.get(
-  '/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
-    res.redirect('/');
-  }
-);
+// Định tuyến để xử lý callback từ Google
+router.get('/google/callback', authController.googleCallback);
 
 export default router;

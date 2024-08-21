@@ -19,10 +19,17 @@ export class User {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   hash_password: string;
 
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: ['local', 'google'],
+    default: 'local',
+  })
+  authType: 'local' | 'google';
+
+  @Column({ nullable: true })
   username: string;
 
   @Column({
@@ -76,8 +83,13 @@ export class User {
     Object.assign(this, partial);
   }
 
-  // Hash mật khẩu trước khi lưu
-  static async hashPassword(password: string): Promise<string> {
+  async hashPassword(
+    password: string,
+    authType: 'local' | 'google'
+  ): Promise<string> {
+    if (authType === 'google') {
+      return ''; // Hoặc giá trị khác nếu cần
+    }
     const salt = await bcrypt.genSalt(10);
     return bcrypt.hash(password, salt);
   }

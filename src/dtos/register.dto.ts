@@ -57,4 +57,9 @@ export class RegisterDTO {
     message: i18next.t('register.errors.specialization_invalid'),
   })
   specialization?: Specialization;
+
+  @IsEnum(['local', 'google'], {
+    message: i18next.t('register.errors.authType_invalid'),
+  })
+  authType: 'local' | 'google';
 }

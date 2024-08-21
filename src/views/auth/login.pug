@@ -49,7 +49,7 @@ block content
             type='button',
             class='hover:bg-red-600'
           )
-            a(href="/auth/google", class="flex items-center")
+            a.flex.items-center(href='/auth/google')
               i.fab.fa-google.mr-2
               | #{ t('login_with_google') }
           a.signup.block.text-blue-500.text-center.mt-4(href='/auth/register')= t('new_user_sign_up')
