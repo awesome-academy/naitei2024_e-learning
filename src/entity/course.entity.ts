@@ -45,7 +45,7 @@ export class Course {
 
   @ManyToOne(() => User, user => user.subInstructorCourses)
   @JoinColumn({ name: 'sub_instructor_id' })
-  subInstructor: User;
+  subInstructor: User | null;
 
   @OneToMany(() => Enrollment, enrollment => enrollment.course)
   enrollments: Enrollment[];

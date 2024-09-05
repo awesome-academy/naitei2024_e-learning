@@ -122,18 +122,6 @@ export const findUserById = async (id: string): Promise<User | null> => {
   return userRepository.findOneBy({ id });
 };
 
-export const getStudentCountByInstructorId = async (
-  instructor: User
-): Promise<number> => {
-  const coursesOfInstructor = await getUserCourseList(instructor);
-  const studentCountsPromises = coursesOfInstructor.map(course =>
-    getStudentCountByCourseId(course.id)
-  );
-
-  const studentCounts = await Promise.all(studentCountsPromises);
-
-  return studentCounts.reduce((acc, count) => acc + count, 0);
-};
 export const deleteById = async (id: string): Promise<void> => {
   await userRepository.delete(id);
 };

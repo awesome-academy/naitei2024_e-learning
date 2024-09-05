@@ -153,7 +153,7 @@ export const getOptionById = async (optionId: string) => {
   return option;
 };
 
-export const createAnswersFromExam = async (
+export const createAnswerForQuestion = async (
   question: Question,
   user: User,
   optionId: string | undefined

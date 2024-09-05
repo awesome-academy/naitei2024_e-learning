@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import asyncHandler from 'express-async-handler';
 import {
-  createAnswersFromExam,
+  createAnswerForQuestion,
   getExamById,
   getBestGradeByCourseId,
   updateGradeWhenStartExam,
@@ -113,7 +113,7 @@ export const submitExam = asyncHandler(
     for (const question of questions) {
       const optionId = answers[question.id];
       const user = await getUserById(res.locals.user.id);
-      await createAnswersFromExam(question!, user!, optionId);
+      await createAnswerForQuestion(question!, user!, optionId);
     }
     res.redirect(`${req.params.id}/result`);
   }

@@ -13,13 +13,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendEmail = (mailOptions: Mail.Options) => {
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(`Email sent to ${mailOptions.to}: ` + info.response);
-    }
-  });
+  transporter.sendMail(mailOptions);
 };
 
 export const mailOptionsTemplate = {
